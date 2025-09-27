@@ -1,0 +1,15 @@
+{
+  "originHash" : "4219918dc7a4d47062c3778548ff7268e1556755b6ba62e7368849b7835c0d02",
+  "pins" : [
+    {
+      "identity" : "nsfwdetectorkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mehmettirpan/NSFWDetectorKit",
+      "state" : {
+        "revision" : "2e1d87c65636576229643de33e5cf819093f3210",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		02080F192E882B100036FC40 /* NSFWDetectorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02080F182E882B100036FC40 /* NSFWDetectorKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		02E365F72E85D8C900F2482F /* NSFWDetector-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NSFWDetector-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02080F192E882B100036FC40 /* NSFWDetectorKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "NSFWDetector-Test";
 			packageProductDependencies = (
+				02080F182E882B100036FC40 /* NSFWDetectorKit */,
 			);
 			productName = "NSFWDetector-Test";
 			productReference = 02E365F72E85D8C900F2482F /* NSFWDetector-Test.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 02E365EE2E85D8C800F2482F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				02080F172E882B100036FC40 /* XCRemoteSwiftPackageReference "NSFWDetectorKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 02E365F82E85D8C900F2482F /* Products */;
 			projectDirPath = "";
@@ -260,6 +269,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -269,11 +279,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -292,6 +306,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -301,11 +316,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -331,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		02080F172E882B100036FC40 /* XCRemoteSwiftPackageReference "NSFWDetectorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mehmettirpan/NSFWDetectorKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02080F182E882B100036FC40 /* NSFWDetectorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02080F172E882B100036FC40 /* XCRemoteSwiftPackageReference "NSFWDetectorKit" */;
+			productName = NSFWDetectorKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02E365EF2E85D8C800F2482F /* Project object */;
 }
