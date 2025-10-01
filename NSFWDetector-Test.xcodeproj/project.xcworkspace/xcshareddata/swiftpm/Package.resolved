@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mehmettirpan/NSFWDetectorKit",
       "state" : {
-        "revision" : "2e1d87c65636576229643de33e5cf819093f3210",
-        "version" : "1.0.0"
+        "revision" : "1a52f7d4f495d9494a22e0be0c6ee53903d86931",
+        "version" : "1.1.0"
       }
     }
   ],
