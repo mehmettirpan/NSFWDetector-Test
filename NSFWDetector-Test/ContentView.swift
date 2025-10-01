@@ -10,6 +10,7 @@ import PhotosUI
 import CoreML
 import Vision
 import NSFWDetectorKit
+import UIKit
 
 struct ContentView: View {
     @State private var pickedItem: PhotosPickerItem?
@@ -21,6 +22,7 @@ struct ContentView: View {
     @State private var loading = false
     @State private var rawLabels: [(String, Float)] = []
     @State private var showDebug = false
+    @State private var showCameraSheet = false
 
     var body: some View {
         NavigationStack {
@@ -58,14 +60,20 @@ struct ContentView: View {
                         Task {
                             if let data = try? await newItem?.loadTransferable(type: Data.self),
                                let ui = UIImage(data: data) {
-                                image = ui
-                                nsfwScore = 0
-                                decision = "—"
-                                nsfwDecisionText = "—"
-                                rawLabels = []
+                                resetForNewImage(ui)
                             }
                         }
                     }
+
+                    Button {
+                        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                            showCameraSheet = true
+                        }
+                    } label: {
+                        Label("Kamera", systemImage: "camera")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.gray)
 
                     Button {
                         runScan()
@@ -78,6 +86,11 @@ struct ContentView: View {
                     }
                     .buttonStyle(.bordered)
                     .disabled(image == nil || loading)
+                }
+                .sheet(isPresented: $showCameraSheet) {
+                    CameraPicker(imageHandler: { ui in
+                        resetForNewImage(ui)
+                    })
                 }
 
                 VStack(alignment: .leading, spacing: 8) {
@@ -124,6 +137,14 @@ struct ContentView: View {
         }
     }
 
+    private func resetForNewImage(_ ui: UIImage) {
+        image = ui
+        nsfwScore = 0
+        decision = "—"
+        nsfwDecisionText = "—"
+        rawLabels = []
+    }
+
     private func runScan() {
         guard let img = image else { return }
         loading = true
@@ -145,6 +166,40 @@ struct ContentView: View {
                     self.decision = self.nsfwDecisionText
                 }
             }
+        }
+    }
+}
+
+struct CameraPicker: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIImagePickerController
+
+    var imageHandler: (UIImage) -> Void
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.allowsEditing = false
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: CameraPicker
+        init(_ parent: CameraPicker) { self.parent = parent }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let ui = info[.originalImage] as? UIImage {
+                parent.imageHandler(ui)
+            }
+            picker.dismiss(animated: true)
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true)
         }
     }
 }
